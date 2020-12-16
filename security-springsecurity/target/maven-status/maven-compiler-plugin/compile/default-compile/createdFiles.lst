@@ -1,0 +1,6 @@
+com\beyondsoft\security\springmvc\init\SpringSecurityApplicationInitializer.class
+com\beyondsoft\security\springmvc\config\ApplicationConfig.class
+com\beyondsoft\security\springmvc\controller\LoginController.class
+com\beyondsoft\security\springmvc\config\WebConfig.class
+com\beyondsoft\security\springmvc\config\WebSecurityConfig.class
+com\beyondsoft\security\springmvc\init\SpringApplicationInitializer.class
