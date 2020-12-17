@@ -26,17 +26,16 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-
     //1 配置客户端详细信息服务
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()	//是由内存方式
                 .withClient("c1")	//client_id
-                .secret(new BCryptPasswordEncoder().encode("secret"))
-                .resourceIds("res1")
+                .secret(new BCryptPasswordEncoder().encode("secret")) //客户端秘钥
+                .resourceIds("res1") //客户端可以访问的资源列表
                 .authorizedGrantTypes("authorization_code","password","client_credentials","implicit","refresh_token")  //该client允许的授权类型 五种授权类型
                 .scopes("all") //允许的授权范围
-                .autoApprove(false)
+                .autoApprove(false)  //false 跳转到授权的页面 true 不需要跳转 直接发令牌
                 .redirectUris("http://www.baidu.com");
     }
 
@@ -50,9 +49,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Bean
     public AuthorizationServerTokenServices tokenServices(){
         DefaultTokenServices services = new DefaultTokenServices();
-        services.setClientDetailsService(clientDetailsService);
+        services.setClientDetailsService(clientDetailsService); //客户端信息服务
         services.setSupportRefreshToken(true);  //是否产生刷新令牌
-        services.setTokenStore(tokenStore);
+        services.setTokenStore(tokenStore);  //令牌存储策略
         services.setAccessTokenValiditySeconds(7200); //令牌默认有效期2小时
         services.setRefreshTokenValiditySeconds(259200); //刷新令牌有效期三天
         return services;
@@ -66,24 +65,24 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     //3 配置令牌访问端点
     @Autowired
-    private AuthorizationCodeServices authorizationCodeServices;
+    private AuthorizationCodeServices authorizationCodeServices;  //授权码模式
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;  //认证管理器
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.authenticationManager(authenticationManager)  //认证管理器 如果采用密码模式 需要配置此项
-                .authorizationCodeServices(authorizationCodeServices)  //授权码模式
+                .authorizationCodeServices(authorizationCodeServices)  //授权码模式需要
                 .tokenServices(tokenServices()) //令牌管理服务 不管什么模式都需要
-                .allowedTokenEndpointRequestMethods(HttpMethod.POST);
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST); //运行Post提交
     }
 
-    //4 令牌端点的安全约束
+    //4 令牌端点的安全策略
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security){
-        security.tokenKeyAccess("permitAll()")
-                .checkTokenAccess("permitAll()")
-                .allowFormAuthenticationForClients();
+        security.tokenKeyAccess("permitAll()")  // /oauth/token公开
+                .checkTokenAccess("permitAll()")  //检测令牌 /oauth/check_token公开
+                .allowFormAuthenticationForClients();  //允许表单认证 申请令牌
     }
 }

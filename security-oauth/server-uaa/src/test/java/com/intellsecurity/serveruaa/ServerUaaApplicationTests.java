@@ -1,13 +1,21 @@
 package com.intellsecurity.serveruaa;
 
-import org.junit.jupiter.api.Test;
+//import org.bouncycastle.crypto.generators.BCrypt;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootTest
-class ServerUaaApplicationTests {
+@RunWith(SpringRunner.class)
+public class ServerUaaApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void testBcrypt() {
+
+		//对密码进行加密
+		String passsword = BCrypt.hashpw("123",BCrypt.gensalt());
+		System.out.println(passsword);
 	}
 
 }

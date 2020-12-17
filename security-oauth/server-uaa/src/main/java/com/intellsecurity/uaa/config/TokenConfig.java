@@ -8,9 +8,10 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 public class TokenConfig {
 
-    //令牌存储策略 暂时使用内存方式
+    //令牌存储策略
     @Bean
     public TokenStore tokenStore(){
-        return  new InMemoryTokenStore();
+        //内存方式 生成普通令牌
+        return new InMemoryTokenStore();
     }
 }
