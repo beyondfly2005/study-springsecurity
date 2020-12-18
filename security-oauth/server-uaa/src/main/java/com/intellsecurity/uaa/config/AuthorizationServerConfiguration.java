@@ -31,7 +31,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()	//是由内存方式
                 .withClient("c1")	//client_id
-                .secret(new BCryptPasswordEncoder().encode("secret")) //客户端秘钥
+                //.secret(new BCryptPasswordEncoder().encode("secret")) //客户端秘钥
+                .secret(new SHAMd5MixPasswordEncoder().encode("secret"))
                 .resourceIds("res1") //客户端可以访问的资源列表
                 .authorizedGrantTypes("authorization_code","password","client_credentials","implicit","refresh_token")  //该client允许的授权类型 五种授权类型
                 .scopes("all") //允许的授权范围
