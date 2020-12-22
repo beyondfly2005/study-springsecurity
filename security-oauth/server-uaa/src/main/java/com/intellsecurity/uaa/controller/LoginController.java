@@ -1,4 +1,4 @@
-package com.intellsecurity.uaa;
+package com.intellsecurity.uaa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/login-view")
+    @RequestMapping(value = "/login")
     public String loginView(){
-        return "view/login";
+        return "login";
     }
 
 }

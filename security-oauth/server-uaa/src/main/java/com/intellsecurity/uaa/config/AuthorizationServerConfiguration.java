@@ -37,7 +37,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .authorizedGrantTypes("authorization_code","password","client_credentials","implicit","refresh_token")  //该client允许的授权类型 五种授权类型
                 .scopes("all") //允许的授权范围
                 .autoApprove(false)  //false 跳转到授权的页面 true 不需要跳转 直接发令牌
-                .redirectUris("http://www.baidu.com");
+                .redirectUris("http://localhost:53020/uaa/");
     }
 
     // 2 配置令牌访问服务
@@ -76,7 +76,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         endpoints.authenticationManager(authenticationManager)  //认证管理器 如果采用密码模式 需要配置此项
                 .authorizationCodeServices(authorizationCodeServices)  //授权码模式需要
                 .tokenServices(tokenServices()) //令牌管理服务 不管什么模式都需要
-                .allowedTokenEndpointRequestMethods(HttpMethod.POST); //运行Post提交
+                .allowedTokenEndpointRequestMethods(HttpMethod.POST)  //运行Post提交
+                .pathMapping("/oauth/confirm_access","/custom/confirm_access")
+        ;
     }
 
     //4 令牌端点的安全策略
