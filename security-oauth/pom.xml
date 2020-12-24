@@ -24,6 +24,8 @@
 
     <modules>
         <module>server-uaa</module>
+        <module>security-order</module>
+		<module>security-res1</module>
     </modules>
 
     <dependencies>

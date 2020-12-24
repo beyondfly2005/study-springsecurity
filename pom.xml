@@ -12,7 +12,7 @@
     <modules>
         <module>security-springmvc</module>
         <module>security-springsecurity</module>
-		<module>security-oauth</module>
+		<module>security-oauth</module>        
     </modules>
 
 </project>
