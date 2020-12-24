@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrderController {
     @RequestMapping("r1")
-//    @PreAuthorize("hasAnyAuthority('p1')")
+    @PreAuthorize("hasAnyAuthority('p1')")
     public String r1(){
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
 //        String name
