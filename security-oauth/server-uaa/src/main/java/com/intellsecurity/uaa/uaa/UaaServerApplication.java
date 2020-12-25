@@ -1,0 +1,16 @@
+package com.intellsecurity.uaa.uaa;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+//@EnableDiscoveryClient
+//@EnableHystrix
+//@EnableFeignClients
+public class UaaServerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(UaaServerApplication.class, args);
+	}
+
+}
