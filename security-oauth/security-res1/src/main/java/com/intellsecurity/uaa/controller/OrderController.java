@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class OrderController {
-    @RequestMapping("r1")
+
+    @RequestMapping("/r1")
     @ResponseBody
 //    @PreAuthorize("hasAnyAuthority('p1')")
     public String r1(){
