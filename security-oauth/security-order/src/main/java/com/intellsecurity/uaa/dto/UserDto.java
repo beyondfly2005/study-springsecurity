@@ -38,5 +38,7 @@ public class UserDto {
     public static void main(String[] args) {
 
         System.out.println( BCrypt.hashpw("secert",BCrypt.gensalt()));
+        System.out.println( BCrypt.hashpw("123",BCrypt.gensalt()));
     }
 }
+

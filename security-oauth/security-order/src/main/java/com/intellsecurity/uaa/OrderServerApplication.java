@@ -14,8 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class ServerOrderApplication {
+public class OrderServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServerOrderApplication.class, args);
+        SpringApplication.run(OrderServerApplication.class, args);
     }
 }
