@@ -1,5 +1,4 @@
-package com.ac.security.uaa.utils;
-
+package com.intellsecurity.uaa.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +30,6 @@ public class EncryptUtil {
             logger.warn("不支持的编码格式",e);
         }
         return encoded;
-
     }
 
     public static String  decodeUTF8StringBase64(String str){
@@ -54,7 +52,6 @@ public class EncryptUtil {
 		}
 		return encoded;
 	}
-
 
 	public static String decodeURL(String url) {
     	String decoded = null;
@@ -82,6 +79,5 @@ public class EncryptUtil {
         System.out.println(urlEncoded);
         System.out.println(urlDecoded);
     }
-
 
 }
